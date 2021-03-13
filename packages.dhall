@@ -107,22 +107,17 @@ let additions =
   }
 -------------------------------
 -}
-
-let mkPackage =
-      https://raw.githubusercontent.com/spacchetti/spacchetti/20181209/src/mkPackage.dhall sha256:8e1c6636f8a089f972b21cde0cef4b33fa36a2e503ad4c77928aabf92d2d4ec9
-
 let upstream =
-      https://raw.githubusercontent.com/spacchetti/spacchetti/20181209/src/packages.dhall sha256:c63285af67ae74feb2f6eb67521712441928d2726ea10e2040774849ca765027
+      https://github.com/purescript/package-sets/releases/download/psc-0.14.0-20210311/packages.dhall sha256:3da8be2b7b4a0e7de6186591167b363023695accffb98a8639e9e7d06e2070d6
+      with redux =
+        { dependencies = [ "prelude" ]
+        , repo = "https://github.com/sliptype/purescript-redux.git"
+        , version = "master"
+        }
+      with record-extra =
+        { dependencies = [ "prelude", "record", "functions", "lists", "arrays" ]
+        , repo = "https://github.com/justinwoo/purescript-record-extra.git"
+        , version = "ps-0.14"
+        }
 
-let overrides = {=}
-
-let additions =
-  { redux =
-      mkPackage
-        [ "prelude"
-        ]
-        "https://github.com/sliptype/purescript-redux.git"
-        "master"
-  }
-
-in  upstream ⫽ overrides ⫽ additions
+in  upstream

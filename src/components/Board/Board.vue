@@ -3,8 +3,9 @@
     <ul class="board">
       <Connected
         v-for="id in props.listIds"
-        :component="list"
+        :component="List"
         :componentProps="{ id }"
+        :key="{ id }"
       />
     </ul>
   </div>
@@ -21,7 +22,7 @@ export default {
 
   data() {
     return {
-      list: List,
+      List
     }
   },
 

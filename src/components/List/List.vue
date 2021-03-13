@@ -4,8 +4,9 @@
     <ul class="item-container">
       <Connected
         v-for="id in props.itemIds"
-        :component="item"
-        :componentProps="{ id }"/>
+        :component="Item"
+        :componentProps="{ id }"
+        :key="{ id }"/>
     </ul>
     <input v-model="newItemName" @keyup.enter="actions.addItem(newItemName)" placeholder="New Item..."/>
   </li>
@@ -20,7 +21,7 @@ export default {
 
   data() {
     return {
-      item: Item,
+      Item,
       newItemName: "",
     }
   },
